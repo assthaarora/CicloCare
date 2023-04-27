@@ -3,7 +3,7 @@
 ### Milestone 1A
 * Prescription - DONE
 * Subscription  -DONE
-* Profile -DONE
+* Profile - 
 
 ### Milestone 1B
 - Chat 
