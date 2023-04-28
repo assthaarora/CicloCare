@@ -28,10 +28,8 @@ Auth::routes();
 
 Route::get('/users_profile', [App\Http\Controllers\PatientController::class, 'users_profile'])->name('users_profile');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/new_prescription', [App\Http\Controllers\HomeController::class, 'new_prescription'])->name('new_prescription');
-Route::get('/my_prescription', [App\Http\Controllers\HomeController::class, 'my_prescription'])->name('my_prescription');
+Route::get('/patient_dashboard', [App\Http\Controllers\HomeController::class, 'patient_dashboard'])->name('patient_dashboard');
 Route::get('/order_management', [App\Http\Controllers\HomeController::class, 'order_management'])->name('order_management');
-Route::get('/subscription_management', [App\Http\Controllers\HomeController::class, 'subscription_management'])->name('subscription_management');
 
 Route::resource('patient_profile', App\Http\Controllers\Patient\PatientProfileController::class);
 Route::post('/patient_profile/updatePassword/{id}', [App\Http\Controllers\Patient\PatientProfileController::class, 'updatePassword'])->name('patient_profile.updatePassword');

@@ -1,9 +1,9 @@
 <aside id="sidebar" class="sidebar">
-
+ 
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
             <a class="nav-link collapsed" 
-                href="{{route('my_prescription')}}">
+                href="{{route('patient_dashboard')}}">
                 <i class="bi bi-menu-button-wide"></i><span>Dashboard</span>
             </a>
         </li>
@@ -18,7 +18,7 @@
             </a>
         </li><!-- End Forms Nav -->
         <li class="nav-item">
-            <a class="nav-link"  href="{{route('patient_profile.index')}}">
+            <a class="nav-link collapsed"  href="{{route('patient_profile.index')}}">
                 <i class="bi bi-circle"></i><span>Account Details</span>
             </a>
         </li><!-- End Tables Nav -->

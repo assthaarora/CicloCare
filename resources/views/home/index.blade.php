@@ -36,79 +36,28 @@
     <!-- ======= Sidebar ======= -->
     @include('home.slidebar');
     <main id="main" class="main">
-
-        <div class="col-lg-12 grid-margin stretch-card">
-            <div class="card">
+    <h2 class="secondary-title mt-3">Prescription</h2>
+    <section class="section">
+      <div class="row align-items-top">
+        <div class="col-lg-6">
+          <div class="card mb-3">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="assets/img/1.png" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
                 <div class="card-body">
-                    <h4 class="card-title">My Prescription</h4>
-                   
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>
-                                       S.No.
-                                    </th>
-                                    <th>
-                                      Order
-                                    </th>
-                                    <th>
-                                        Order Medicine
-                                    </th>
-                                    <th>
-                                        Select Medicine and quantity
-                                    </th>
-                                    <th>
-                                       select billing cycle
-                                    </th>
-                                    <th>
-                                        Details
-                                     </th>
-                                     <th>
-                                        Track Order
-                                     </th>
-                                     <th>
-                                        Status
-                                     </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td >
-                                       1
-                                    </td>
-                                    <td>
-                                        NA
-                                    </td>
-                                    <td>
-                                        NA
-                                    </td>
-                                    <td>
-                                       1000
-                                    </td>
-                                    <td>
-                                        NA
-                                    </td>
-                                    <td>
-                                        NA
-                                    </td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar"
-                                                style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        NA
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                  <h5 class="card-title">20md Sildenafil</h5>
+                  <p class="card-text">1month Supply</p>
+                  <p class="card-text">Order Shipped</p>
+                  <a class="detail-link mt-3"> Manage Prescription <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+    </section>
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
