@@ -1,8 +1,8 @@
 # CicloCare Project 
 ## Patient Portal
 ### Milestone 1A
-* Prescription - DONE
-* Subscription  -DONE
+* Prescription -
+* Subscription  -
 * Profile - 
 
 ### Milestone 1B

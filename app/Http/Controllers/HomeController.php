@@ -27,19 +27,13 @@ class HomeController extends Controller
     {
         return view('home.index');
     }
-    public function my_prescription(){
+    public function patient_dashboard(){
         return view('home.index');
     }
-    public function new_prescription(){
-        return view('home.new_prescription');
-    }
- 
+    
     public function order_management(){
         return view('home.order_management');
     }
 
-    public function subscription_management(){
-        return view('home.subcription_managemnet');
-    }
     
 }
