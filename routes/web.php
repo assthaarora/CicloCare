@@ -33,3 +33,7 @@ Route::get('/order_management', [App\Http\Controllers\HomeController::class, 'or
 
 Route::resource('patient_profile', App\Http\Controllers\Patient\PatientProfileController::class);
 Route::post('/patient_profile/updatePassword/{id}', [App\Http\Controllers\Patient\PatientProfileController::class, 'updatePassword'])->name('patient_profile.updatePassword');
+
+
+
+Route::webhooks('webhook');
