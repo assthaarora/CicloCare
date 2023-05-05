@@ -5,7 +5,7 @@ use \Spatie\WebhookClient\Jobs\ProcessWebhookJob;
 
 class WebhookHandler extends ProcessWebhookJob{
 
-    public function handle(){
+    public function handle(){ 
         logger("I was here");
         logger($this->webhookCall);
     }
