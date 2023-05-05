@@ -85,8 +85,8 @@
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Customer</th>
                         <th scope="col">Product</th>
+                        <th scope="col">Subscription</th>
                         <th scope="col">Price</th>
                         <th scope="col">Status</th>
                       </tr>

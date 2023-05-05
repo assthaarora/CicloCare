@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 
     // });
 // Route::resource('/form', [App\Http\Controllers\HomePageController::class]);
-Route::get('/form', [App\Http\Controllers\HomePageController::class, 'index']);
-Route::post('/form', [App\Http\Controllers\HomePageController::class, 'store'])->name('form.store');
+Route::get('/form', [App\Http\Controllers\Patient\IntakePageController::class, 'index']);
+Route::post('/form', [AApp\Http\Controllers\Patient\IntakePageController::class, 'store'])->name('form.store');
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
