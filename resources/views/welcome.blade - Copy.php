@@ -7,7 +7,7 @@
     <meta name="author" content="colorlib.com">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign Up Form</title>
-
+ 
     <!-- Font Icon -->
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">

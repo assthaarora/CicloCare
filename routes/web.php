@@ -19,11 +19,13 @@ use Illuminate\Support\Facades\Route;
 
     // });
 // Route::resource('/form', [App\Http\Controllers\HomePageController::class]);
-Route::get('/form', [App\Http\Controllers\Patient\IntakePageController::class, 'index']);
+Route::get('/form', [App\Http\Controllers\Patient\IntakePageController::class, 'index'])->name('form');
 Route::post('/form', [AApp\Http\Controllers\Patient\IntakePageController::class, 'store'])->name('form.store');
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+Route::get('/intake', [App\Http\Controllers\Patient\EmailIntakeController::class, 'index']);
+Route::post('/intake', [App\Http\Controllers\Patient\EmailIntakeController::class, 'store'])->name('intake.store');
+
+
+Route::get('/login', function () {return view('auth.login');})->name('login');
 Auth::routes();
 
 Route::get('/users_profile', [App\Http\Controllers\PatientController::class, 'users_profile'])->name('users_profile');
