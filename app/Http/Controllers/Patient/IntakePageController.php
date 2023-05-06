@@ -20,10 +20,10 @@ class IntakePageController extends Controller
     public function index()
     { 
         // dd("");
-        $disease_name="";
-        $data=[];
-        $all_medicine=[];
-        return view('patient/intakeform', compact('disease_name','data', 'all_medicine'));
+        // $disease_name="";
+        // $data=[];
+        // $all_medicine=[];
+        // return view('patient/intakeform', compact('disease_name','data', 'all_medicine'));
         //Dynamic Token Generation starts
         $dynamic_token_body = [
             'grant_type'=> 'client_credentials',
@@ -140,7 +140,7 @@ class IntakePageController extends Controller
         // curl_close($curl);
         // echo $response;
 
-        return view('patient/email', compact('disease_name','data', 'all_medicine'));
+        return view('patient/intakeform ', compact('disease_name','data', 'all_medicine'));
     }
 
     /**
