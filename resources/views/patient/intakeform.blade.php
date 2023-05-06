@@ -114,6 +114,27 @@
                             <div class="form-row">
                                 <div class="form-flex">
                                     <div class="form-group">
+                                        <label for="city" class="form-label">Create new password</label>
+                                        <input type="password" name="user_data[weight]" id="weight" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="state" class="form-label">Confirm Password</label>
+                                        <input type="password" name="user_data[height]" id="height" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <h3> General Questions</h3>
+                    <fieldset>
+                        <div class="fieldset-content">
+                            <div class="tab">
+                                <p class="desc">We're going to ask you some questions.This should take a few minute.
+                                </p>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-flex">
+                                    <div class="form-group">
                                         <label for="city" class="form-label">Weight in KG</label>
                                         <input type="text" name="user_data[weight]" id="weight" />
                                     </div>
@@ -122,8 +143,11 @@
                                         <input type="text" name="user_data[height]" id="height" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="zip_code" class="form-label">Pregnancy</label>
-                                        <input type="text" name="user_data[pregnancy]" id="pregnancy" />
+                                        <label for="pregnancy" class="form-label">Pregnancy</label>
+                                        <select id="pregnancy" name="pregnancy">
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -140,9 +164,19 @@
                                     </div>
                                 </div>
                             </div>
+                            <div style="overflow:auto;margin-bottom:10px;" id="divBtn">
+                                <button type="button" id="nextBtn" onclick="nextPrev(1)"
+                                    style="width: 100%;">Continue</button>
+                            </div>
+                            <div style="text-align:center;margin-top:40px; display:none;">
+                                <span class="step"></span>
+                                @foreach ($data as $k => $val)
+                                    <span class="step"></span>
+                                @endforeach
+                            </div>
                         </div>
                     </fieldset>
-                    <h3>Questions</h3>
+                    <h3> Medicine Questions</h3>
                     <fieldset>
                         <div class="fieldset-content">
                             <div class="tab">
@@ -451,7 +485,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <h3 style="pointer:none !important"> Medication </h3>
+                    <h3 style="pointer:none !important"> Medication Summary</h3>
                     <fieldset>
                         <div class="fieldset-content">
                             <div class="tab1">
@@ -576,7 +610,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <h3>Upload Id</h3>
+                    <h3>Govt. ID Verifictaion</h3>
                     <fieldset>
                         <h2>Government Issued ID</h2>
                         <p class="desc">We take privacy and security seriosuly Upload your ID so we know its you!</p>
@@ -592,7 +626,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    <h3>Payment</h3>
+                    <h3>Payments</h3>
                     <fieldset>
                         <h2>Set Financial Goals</h2>
                         <p class="desc">Set up your money limit to reach the future plan</p>

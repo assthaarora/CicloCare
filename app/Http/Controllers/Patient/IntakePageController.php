@@ -18,8 +18,12 @@ class IntakePageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         // dd("");
+        $disease_name="";
+        $data=[];
+        $all_medicine=[];
+        return view('patient/intakeform', compact('disease_name','data', 'all_medicine'));
         //Dynamic Token Generation starts
         $dynamic_token_body = [
             'grant_type'=> 'client_credentials',
@@ -48,7 +52,7 @@ class IntakePageController extends Controller
         ),
         ));
         $response_token = curl_exec($curl);
-        dd(json_decode($response_token),json_decode($response_token)->access_token);
+        // dd(json_decode($response_token));
         curl_close($curl);
         //Dynamic Token Generation ends
         $token =json_decode($response_token)->access_token;
@@ -136,7 +140,7 @@ class IntakePageController extends Controller
         // curl_close($curl);
         // echo $response;
 
-        return view('welcome', compact('disease_name','data', 'all_medicine'));
+        return view('patient/email', compact('disease_name','data', 'all_medicine'));
     }
 
     /**
