@@ -184,7 +184,7 @@
                                 <p class="desc">We're going to ask you some questions.This should take a few minute.
                                 </p>
                             </div>
-                            @foreach ($data as $k => $val)
+                            <!-- @foreach ($data as $k => $val)
                                 <div class="tab">{{ $val->title }}
                                     @if ($val->type == 'string')
                                         <input type="hidden"
@@ -455,7 +455,7 @@
                                             value="{{ $val->default_value }}">
                                         <!-- <div class="form-check p-2" style="display:flex;">
                                                 <input type="range" id="{{ $val->title }}" name="intake_data[{{ $k }}]['type_range']" min="0" class="" max="11" style="margin: 0.4rem; !important">
-                                            </div> -->
+                                            </div> 
                                         <div class="donate-us">
                                             <div class="price_slider ui-slider ui-slider-horizontal">
                                                 <div id="slider-margin"></div>
@@ -471,7 +471,7 @@
                                         </div>
                                     @endif
                                 </div>
-                            @endforeach
+                            @endforeach -->
 
                             <div style="overflow:auto;margin-bottom:10px;" id="divBtn">
                                 <button type="button" id="nextBtn" onclick="nextPrev(1)"
