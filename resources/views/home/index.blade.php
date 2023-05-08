@@ -29,6 +29,8 @@
     <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
+
+    
 </head>
 
 <body>
@@ -41,7 +43,7 @@
       <section class="section dashboard">
         <div class="row">
           <!-- Left side columns -->
-          <div class="col-lg-8">
+          <div class="col-lg-7">
             <div class="row">
               <div class="col-12">
                 <div class="card mb-3">
@@ -80,25 +82,30 @@
 
                 <div class="card-body">
                   <h5 class="card-title">Recent Sales <span>| Today</span></h5>
-
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Product</th>
+                        <th scope="col">Medicine</th>
                         <th scope="col">Subscription</th>
                         <th scope="col">Price</th>
                         <th scope="col">Status</th>
+                        <th scope="col">View</th>
                       </tr>
                     </thead>
                     <tbody>
+                      
+                      @foreach($patientCases as $cases)
                       <tr>
                         <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
+                        <td>20md Sildenafil</td>
                         <td><a href="#" class="text-primary">At praesentium minu</a></td>
                         <td>$64</td>
-                        <td><span class="badge bg-success">Approved</span></td>
+                        <td><span class="badge bg-success">{{$cases->case_status->name}}</span></td>
+                        <td><a href="{{ route('patient_dashboard') }}">View</a></td>
                       </tr>
+                      @endforeach
+                      
                     </tbody>
                   </table>
 
@@ -111,75 +118,51 @@
         </div><!-- End Left side columns -->
 
           <!-- Right side columns -->
-          <div class="col-lg-4">
+          <div class="col-lg-5">
 
             <!-- Recent Activity -->
             <div class="card">
-              <div class="filter">
-                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                  <li class="dropdown-header text-start">
-                    <h6>Filter</h6>
-                  </li>
-
-                  <li><a class="dropdown-item" href="#">Today</a></li>
-                  <li><a class="dropdown-item" href="#">This Month</a></li>
-                  <li><a class="dropdown-item" href="#">This Year</a></li>
-                </ul>
-              </div>
-
               <div class="card-body">
                 <h5 class="card-title">Most Recent Order Status</h5>
-
                 <div class="activity">
 
                   <div class="activity-item d-flex">
-                    <div class="activite-label">32 min</div>
+                    <div class="activite-label">1</div>
                     <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                    <div class="activity-content">
-                      Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo officiis</a> beatae
-                    </div>
+                    <div class="activity-content">Intake Form {{$recentOrderCreatedAt}}</div>
                   </div><!-- End activity item-->
 
                   <div class="activity-item d-flex">
-                    <div class="activite-label">56 min</div>
+                    <div class="activite-label">2</div>
                     <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                    <div class="activity-content">
-                      Voluptatem blanditiis blanditiis eveniet
-                    </div>
+                    <div class="activity-content">Identity Verification {{$recentOrderCreatedAt}}</div>
                   </div><!-- End activity item-->
 
                   <div class="activity-item d-flex">
-                    <div class="activite-label">2 hrs</div>
+                    <div class="activite-label">3</div>
                     <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                    <div class="activity-content">
-                      Voluptates corrupti molestias voluptatem
-                    </div>
+                    <div class="activity-content">Treatment Request {{$recentOrderCreatedAt}}</div>
                   </div><!-- End activity item-->
 
                   <div class="activity-item d-flex">
-                    <div class="activite-label">1 day</div>
+                    <div class="activite-label">4</div>
                     <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                    <div class="activity-content">
-                      Tempore autem saepe <a href="#" class="fw-bold text-dark">occaecati voluptatem</a> tempore
-                    </div>
+                    <div class="activity-content">Prescription</div>
                   </div><!-- End activity item-->
 
                   <div class="activity-item d-flex">
-                    <div class="activite-label">2 days</div>
+                    <div class="activite-label">5</div>
                     <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                    <div class="activity-content">
-                      Est sit eum reiciendis exercitationem
-                    </div>
+                    <div class="activity-content">Order Processing</div>
                   </div><!-- End activity item-->
 
                   <div class="activity-item d-flex">
-                    <div class="activite-label">4 weeks</div>
+                    <div class="activite-label">6</div>
                     <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                    <div class="activity-content">
-                      Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                    </div>
+                    <div class="activity-content">Order Shipped</div>
                   </div><!-- End activity item-->
+                  
+                  
 
                 </div>
 
@@ -190,7 +173,9 @@
           </div><!-- End Right side columns -->
 
         </div>
-      </section>
+
+
+    </section>
 
     </main><!-- End #main -->
 
@@ -209,6 +194,12 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    function handleWebhook() {
+      console.log("reached");
+      location.reload();
+    }
+  </script>
 
 </body>
 

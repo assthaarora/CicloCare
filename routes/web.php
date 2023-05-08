@@ -29,8 +29,8 @@ Route::get('/login', function () {return view('auth.login');})->name('login');
 Auth::routes();
 
 Route::get('/users_profile', [App\Http\Controllers\PatientController::class, 'users_profile'])->name('users_profile');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/patient_dashboard', [App\Http\Controllers\HomeController::class, 'patient_dashboard'])->name('patient_dashboard');
+Route::get('/home', [App\Http\Controllers\DashboradController::class, 'index'])->name('home');
+Route::get('/patient_dashboard', [App\Http\Controllers\Patient\DashboradController::class, 'index'])->name('patient_dashboard');
 Route::get('/order_management', [App\Http\Controllers\HomeController::class, 'order_management'])->name('order_management');
 
 Route::resource('patient_profile', App\Http\Controllers\Patient\PatientProfileController::class);
