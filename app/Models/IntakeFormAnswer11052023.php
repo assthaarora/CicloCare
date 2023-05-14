@@ -28,11 +28,6 @@ class IntakeFormAnswer extends Model
         'order',
         'default_value',
         'created_at',
-        'updated_at',
-        'userId',
-        'created_by',
-        'updated_by',
-        
-        
+        'updated_at'
     ];
 }

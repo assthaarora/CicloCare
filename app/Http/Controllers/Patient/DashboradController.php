@@ -16,6 +16,7 @@ class DashboradController extends Controller
      */
     public function index()
     {
+        // dd(Auth::user());
         //############################################## DYANMIC TOKEN GENERATION #################################################################
         $dynamic_token_body = [
             'grant_type'=> 'client_credentials',

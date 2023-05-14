@@ -28,8 +28,6 @@ class User extends Authenticatable
         'phone_number',
         'phone_type',
         'password',
-        'role',
-        'customer_of',
     ];
 
     /**
