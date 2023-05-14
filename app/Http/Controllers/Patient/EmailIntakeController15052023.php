@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class EmailIntakeController extends Controller
 {
@@ -35,8 +36,13 @@ class EmailIntakeController extends Controller
      */
     public function store(Request $request)
     {
-       $email=$request->email;
-        return redirect()->route('form',['email' =>encrypt($email)]);
+        // dd($request->email);
+        $user = User::where('email', $request->email)->first();
+        if($user)
+            return redirect()->route('login');
+        else
+            return redirect()->route('form');
+    
     }
 
     /**

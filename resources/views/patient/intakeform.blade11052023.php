@@ -9,26 +9,45 @@
     <title>Sign Up Form</title>
 
     <!-- Font Icon -->
-    
-    <link rel="stylesheet" href="{{ asset('fonts/material-icon/css/material-design-iconic-font.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('vendor/nouislider/nouislider.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="{{ asset('vendor/nouislider/nouislider.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
 
-    <!-- Main css -->
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+
 </head>
-
 <body>
-
     <div class="main">
-
         <div class="container">
-            <form id="signup-form" action="{{ route('form.store') }}" role="form" method="post" files=true
-                enctype='multipart/form-data' accept-charset="utf-8">
-                <input type="hidden" name="user_data[email]" value="{{$email}}"/>
+            <form id="signup-form" action="{{ route('form.store') }}" class="signup-form" role="form" method="post"
+                files=true enctype='multipart/form-data' accept-charset="utf-8">
                 @csrf
-              
                 <div>
-                    <h3>Personal info</h3>
+                    {{-- <h3>Create Patient</h3>
+                    <fieldset>
+                        <div class="fieldset-content">
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email" id="email" placeholder="Enter email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" name="user_data[password]" id="password"
+                                    placeholder="password" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password" class="form-label">Confirm Password</label>
+                                <input type="password" name="user_data[password]" id="password"
+                                    placeholder="Confirm password" />
+                            </div>
+
+                        </div>
+                    </fieldset> --}}
+                    <h3>Patient Details</h3>
                     <fieldset>
                         <div class="fieldset-content">
                             <div class="form-row">
@@ -36,108 +55,59 @@
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <input type="text" name="user_data[first_name]" id="first_name"
-                                            placeholder="First Name" / value="{{ old('user_data.first_name') }}">
-                                        @if ($errors->has('user_data.first_name'))
-                                            <span style="color:red">{{ $errors->first('user_data.first_name') }}</span>
-                                        @endif
+                                            placeholder="First Name" />
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="user_data[last_name]" id="last_name"
-                                            placeholder="Last Name" / value="{{ old('user_data.last_name') }}">
-                                            @if ($errors->has('user_data.last_name'))
-                                            <span style="color:red;">{{ $errors->first('user_data.last_name') }}</span>
-                                        @endif
+                                            placeholder="Last Name" />
                                     </div>
                                 </div>
                             </div>
-                        
                             <div class="form-date">
                                 <label for="birth_date" class="form-label">Birth Date</label>
                                 <input type="date" name="user_data[dob]" id="birth_date"
-                                    placeholder="Date of Birth" / value="{{ old('user_data.dob') }}">
-                                    @if ($errors->has('user_data.dob'))
-                                    <span style="color:red;">{{ $errors->first('user_data.dob') }}</span>
-                                @endif
+                                    placeholder="Date of Birth" />
                             </div>
-
                             <div class="form-row">
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <label class="form-label">Gender</label>
-                                        <select class="form-select" name="user_data[gender]" >
-                                            <option value="">Not known</option>
+                                        <label class="form-label" id="exampleFormControlSelect1">Gender</label>
+                                        <select class="form-label" name="user_data[gender]"
+                                            id="exampleFormControlSelect1">
+                                            <option value="0">Not known</option>
                                             <option value="1">Male</option>
                                             <option value="2">Female</option>
                                             <option value="9">Not Applicable</option>
                                         </select>
-                                        @if ($errors->has('user_data.gender'))
-                                        <span style="color:red;">{{ $errors->first('user_data.gender') }}</span>
-                                    @endif
                                     </div>
-                                  
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-flex">
                                     <div class="form-group">
                                         <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" name="user_data[phone]" / value="{{ old('user_data.phone') }}">
-                                        @if ($errors->has('user_data.phone'))
-                                        <span style="color:red;">{{ $errors->first('user_data.phone') }}</span>
-                                    @endif
+                                        <input id="phone" type="text" name="user_data[phone]" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="phonetype" class="form-label">Phone Type</label>
-                                        <select class="form-select" name="user_data[phone_type]">
-                                            <option value="">Please Select</option>
-                                            <option value="2">2</option>
-                                            <option value="4">4</option>
-                                        </select>
-                                        @if ($errors->has('user_data.phone_type'))
-                                        <span style="color:red;">{{ $errors->first('user_data.phone_type') }}</span>
-                                    @endif
-
-                                    </div>
-                                  
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="ssn" class="form-label">Address</label>
-                                <input type="text" name="user_data[address]" id="address" placeholder="Address" / value="{{ old('user_data.address') }}">
-                                @if ($errors->has('user_data.address'))
-                                <span style="color:red;">{{ $errors->first('user_data.address') }}</span>
-                            @endif
+                                <input type="text" name="user_data[address]" id="address" placeholder="Address" />
                             </div>
                             <div class="form-group">
                                 <label for="ssn" class="form-label">Address 2</label>
                                 <input type="text" name="user_data[address2]" id="ssn"
-                                    placeholder="Additional Address" / value="{{ old('user_data.address2') }}">
-                                    @if ($errors->has('user_data.address2'))
-                                    <span style="color:red;">{{ $errors->first('user_data.address2') }}</span>
-                                @endif
+                                    placeholder="Additional Address" />
                             </div>
                             <div class="form-row">
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <label for="city" class="form-label">City</label>
-                                        <input type="text" name="user_data[city]" id="city" / value="{{ old('user_data.city') }}">
-                                        @if ($errors->has('user_data.city'))
-                                        <span style="color:red;">{{ $errors->first('user_data.city') }}</span>
-                                    @endif
+                                        <input type="text" name="user_data[city]" id="city" />
                                     </div>
                                     <div class="form-group">
                                         <label for="state" class="form-label">State</label>
-                                        <input type="text" name="user_data[state]" id="state" / value="{{ old('user_data.state') }}">
-                                        @if ($errors->has('user_data.state'))
-                                        <span style="color:red;">{{ $errors->first('user_data.state') }}</span>
-                                    @endif
+                                        <input type="text" name="user_data[state]" id="state" />
                                     </div>
                                     <div class="form-group">
                                         <label for="zip_code" class="form-label">Zip Code</label>
-                                        <input type="text" name="user_data[zip_code]" id="zip_code" / value="{{ old('user_data.zip_code') }}">
-                                        @if ($errors->has('user_data.zip_code'))
-                                        <span style="color:red;">{{ $errors->first('user_data.zip_code') }}</span>
-                                    @endif
+                                        <input type="text" name="user_data[zip_code]" id="zip_code" />
                                     </div>
                                 </div>
                             </div>
@@ -145,24 +115,17 @@
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <label for="city" class="form-label">Create new password</label>
-                                        <input type="password" name="user_data[password]" >
-                                        @if ($errors->has('user_data.password'))
-                                        <span style="color:red;">{{ $errors->first('user_data.password') }}</span>
-                                    @endif
+                                        <input type="password" name="user_data[weight]" id="weight" />
                                     </div>
                                     <div class="form-group">
                                         <label for="state" class="form-label">Confirm Password</label>
-                                        <input type="password" name="user_data[confirm_password]">
-                                        @if ($errors->has('user_data.confirm_password'))
-                                        <span style="color:red;">{{ $errors->first('user_data.confirm_password') }}</span>
-                                    @endif
+                                        <input type="password" name="user_data[height]" id="height" />
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </fieldset>
-                    {{-- <h3> General Questions</h3>
+                    <h3> General Questions</h3>
                     <fieldset>
                         <div class="fieldset-content">
                             <div class="tab">
@@ -173,66 +136,56 @@
                                 <div class="form-flex">
                                     <div class="form-group">
                                         <label for="city" class="form-label">Weight in KG</label>
-                                        <input type="text" name="user_data[weight]" id="weight" / value="{{ old('user_data.weight') }}">
-                                        @if ($errors->has('user_data.weight'))
-                                        <span style="color:red;">{{ $errors->first('user_data.weight') }}</span>
-                                    @endif
+                                        <input type="text" name="user_data[weight]" id="weight" />
                                     </div>
                                     <div class="form-group">
                                         <label for="state" class="form-label">Height in CM</label>
-                                        <input type="text" name="user_data[height]" id="height" / value="{{ old('user_data.height') }}">
-                                        @if ($errors->has('user_data.height'))
-                                        <span style="color:red;">{{ $errors->first('user_data.height') }}</span>
-                                    @endif
+                                        <input type="text" name="user_data[height]" id="height" />
                                     </div>
-
+                                    <div class="form-group">
+                                        <label for="pregnancy" class="form-label">Pregnancy</label>
+                                        <select id="pregnancy" name="pregnancy">
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-flex">
-                                    <div class="form-group">
-                                        <label for="pregnancy">Pregnancy</label>
-                                        <select id="pregnancy" name="user_data[pregnancy]" class="form-select">
-                                            <option value="">Please Select</option>
-                                            <option value="1">True</option>
-                                            <option value="0">False</option>
-                                        </select>
-                                        @if ($errors->has('user_data.pregnancy'))
-                                        <span style="color:red;">{{ $errors->first('user_data.pregnancy') }}</span>
-                                    @endif
-                                    </div>
-                                 
                                     <div class="form-group">
                                         <label for="city" class="form-label">Known patient's allergies</label>
                                         <input type="text" name="user_data[allergeis]" id="allergeis" />
-                                        @if ($errors->has('user_data.allergeis'))
-                                        <span style="color:red;">{{ $errors->first('user_data.allergeis') }}</span>
-                                    @endif
                                     </div>
-
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-flex">
-
                                     <div class="form-group">
                                         <label for="state" class="form-label">Current Medications</label>
                                         <input type="text" name="user_data[current_medication]"
                                             id="current_medication" />
-                                            @if ($errors->has('user_data.current_medication'))
-                                        <span style="color:red;">{{ $errors->first('user_data.current_medication') }}</span>
-                                    @endif
                                     </div>
                                 </div>
                             </div>
-
+                            <div style="overflow:auto;margin-bottom:10px;" id="divBtn">
+                                <button type="button" id="nextBtn" onclick="nextPrev(1)"
+                                    style="width: 100%;">Continue</button>
+                            </div>
+                            <div style="text-align:center;margin-top:40px; display:none;">
+                                <span class="step"></span>
+                                @foreach ($data as $k => $val)
+                                    <span class="step"></span>
+                                @endforeach
+                            </div>
                         </div>
-                    </fieldset> --}}
-                    @foreach ($data as $k => $val)
-                        <h3> Medicine Questions</h3>
-                        <fieldset>
-                            <div class="fieldset-content">
-                                <div style="padding-bottom: 10px">{{ $val->title }}
+                    </fieldset>
+                    <h3> Medicine Questions</h3>
+                    <fieldset>
+                        <div class="fieldset-content">
+                            <div class="tab">
+                                <h2>{{$disease_name}}</h2>
+                                <p class="desc">We're going to ask you some questions.This should take a few minute.
+                                </p>
+                            </div>
+                            <!-- @foreach ($data as $k => $val)
+                                <div class="tab">{{ $val->title }}
                                     @if ($val->type == 'string')
                                         <input type="hidden"
                                             name="intake_data[{{ $k }}][partner_questionnaire_question_id]"
@@ -262,7 +215,8 @@
 
                                         <div class="form-check p-2" style="display:flex;padding:1px;">
                                             <input class="form-check-input" type="text"
-                                                name="intake_data[{{ $k }}][answer]" value=""
+                                                name="intake_data[{{ $k }}][answer]"
+                                                id="{{ $val->title }}" value=""
                                                 style="margin-top: 5px; margin-bottom: 5px;">
                                         </div>
                                     @elseif($val->type == 'boolean')
@@ -302,7 +256,7 @@
                                         <div class="form-check p-2" style="display:flex;">
                                             <input class="form-check-input" type="radio"
                                                 name="intake_data[{{ $k }}][answer]"
-                                                style="width:3% !important" value="N">
+                                                id="{{ $val->title }}" style="width:3% !important" value="N">
                                             <label class="form-check-label" for="exampleRadios2"
                                                 style="padding: 18px">
                                                 No
@@ -317,7 +271,7 @@
                                         @foreach ($val->options as $k => $option)
                                             <div class="form-check p-2" style="display:flex;">
                                                 <input class="form-check-input" type="checkbox"
-                                                    name="multiple_option[{{ $k }}]"
+                                                    name="multiple_option[{{ $k }}]" id=""
                                                     value=" {{ $option->title }}" style="width:3% !important">
                                                 <label class="form-check-label" for="" style="padding: 18px">
                                                     {{ $option->title }}
@@ -352,7 +306,8 @@
                                             value="{{ $val->default_value }}">
                                         <div class="form-check p-2" style="display:flex;padding:1px;">
                                             <input class="form-check-input" type="text"
-                                                name="intake_data[{{ $k }}][answer]" value=""
+                                                name="intake_data[{{ $k }}][answer]"
+                                                id="{{ $val->title }}" value=""
                                                 style="margin-top: 5px; margin-bottom: 5px;">
                                         </div>
                                     @elseif($val->type == 'single_option')
@@ -384,8 +339,8 @@
                                         @foreach ($val->options as $key => $option)
                                             <div class="form-check p-2" style="display:flex;">
                                                 <input class="form-check-input" type="radio"
-                                                    name="intake_data[{{ $k }}][answer]" value=""
-                                                    style="width:3% !important">
+                                                    name="intake_data[{{ $k }}][answer]"
+                                                    id="exampleRadios1" value="" style="width:3% !important">
                                                 <label class="form-check-label" for="exampleRadios1"
                                                     style="padding: 18px">
                                                     {{ $option->title }}
@@ -420,8 +375,8 @@
                                             value="{{ $val->default_value }}">
                                         <div class="form-check p-2" style="display:flex;">
                                             <input class="form-check-input" type="number"
-                                                name="intake_data[{{ $k }}][answer]" value=""
-                                                style="margin-top: 5px; margin-bottom: 5px;" />
+                                                name="intake_data[{{ $k }}][answer]" id=""
+                                                value="" style="margin-top: 5px; margin-bottom: 5px;" />
                                         </div>
                                     @elseif($val->type == 'date')
                                         <input type="hidden"
@@ -451,13 +406,14 @@
                                             value="{{ $val->default_value }}">
                                         <div class="form-check p-2" style="display:flex;">
                                             <input class="form-check-input" type="date"
-                                                name="intake_data[{{ $k }}][answer]" value=""
-                                                style="margin-top: 5px; margin-bottom: 5px;" />
+                                                name="intake_data[{{ $k }}][answer]" id=""
+                                                value="" style="margin-top: 5px; margin-bottom: 5px;" />
                                         </div>
                                     @elseif($val->type == 'ordering')
+                                        {{-- <input type="hidden" name="intake_data[{{$k}}][partner_questionnaire_question_id]" value="{{$val->partner_questionnaire_question_id}}"> --}}
                                         <div class="form-check p-2" style="display:flex;">
                                             <input class="form-check-input" type="radio" name=""
-                                                value="" style="width:3% !important">
+                                                id="exampleRadios1" value="" style="width:3% !important">
                                             <label class="form-check-label" for="exampleRadios1"
                                                 style="padding: 18px">
                                                 Yes
@@ -465,7 +421,7 @@
                                         </div>
                                         <div class="form-check p-2" style="display:flex;">
                                             <input class="form-check-input" type="radio" name=""
-                                                style="width:3% !important" value="">
+                                                id="exampleRadios2" style="width:3% !important" value="">
                                             <label class="form-check-label" for="exampleRadios2"
                                                 style="padding: 18px">
                                                 No
@@ -499,7 +455,7 @@
                                             value="{{ $val->default_value }}">
                                         <!-- <div class="form-check p-2" style="display:flex;">
                                                 <input type="range" id="{{ $val->title }}" name="intake_data[{{ $k }}]['type_range']" min="0" class="" max="11" style="margin: 0.4rem; !important">
-                                            </div> -->
+                                            </div> 
                                         <div class="donate-us">
                                             <div class="price_slider ui-slider ui-slider-horizontal">
                                                 <div id="slider-margin"></div>
@@ -515,94 +471,120 @@
                                         </div>
                                     @endif
                                 </div>
+                            @endforeach -->
+
+                            <div style="overflow:auto;margin-bottom:10px;" id="divBtn">
+                                <button type="button" id="nextBtn" onclick="nextPrev(1)"
+                                    style="width: 100%;">Continue</button>
                             </div>
-                        </fieldset>
-                    @endforeach
-                    <h3 style="pointer:none !important"> Medication Summary</h3>
-                    <fieldset>
-                        <div class="fieldset-content">
-                            <div>
-                                <h2> Medication Summary</h2>
-
-                                @foreach ($all_medicine as $k => $medicine)
-                                    <div>
-                                        <div class="form-check p-2" style="display:flex; ">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[dosespot_rxcui]"
-                                                value="{{ $medicine->dosespot_rxcui }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[active]" value="{{ $medicine->active }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[ndc]" value="{{ $medicine->ndc }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[days_supply]"
-                                                value="{{ $medicine->days_supply }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[refills]" value="{{ $medicine->refills }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[pharmacy_notes]"
-                                                value="{{ $medicine->pharmacy_notes }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[directions]"
-                                                value="{{ $medicine->directions }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[quantity]" value="{{ $medicine->quantity }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[dispense_unit]"
-                                                value="{{ $medicine->dispense_unit }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[strength]" value="{{ $medicine->strength }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[dispense_unit_id]"
-                                                value="{{ $medicine->dispense_unit_id }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[pharmacy_id]"
-                                                value="{{ $medicine->pharmacy_id }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[pharmacy_name]"
-                                                value="{{ $medicine->pharmacy_name }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[metadata]" value="{{ $medicine->metadata }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[thank_you_note]"
-                                                value="{{ $medicine->thank_you_note }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[clinical_note]"
-                                                value="{{ $medicine->clinical_note }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[allow_substitutions]"
-                                                value="{{ $medicine->allow_substitutions }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[title]" value="{{ $medicine->title }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[partner_medication_id]"
-                                                value="{{ $medicine->partner_medication_id }}">
-                                            <input class="form-check-input" type="hidden"
-                                                name="medication_data[effective_date]"
-                                                value="{{ $medicine->effective_date }}">
-                                            <p>{{ $medicine->name }}</p>
-                                            <p>Refills : {{ $medicine->refills }} & Days_supply :
-                                                {{ $medicine->days_supply }}</p>
-                                            <label class="form-check-label" for="exampleRadios1"
-                                                style="padding: 18px">{{ $medicine->name }} |
-                                                {{ $medicine->strength }} </label>
-
-                                        </div>
-
-                                    </div>
+                            <div style="text-align:center;margin-top:40px; display:none;">
+                                <span class="step"></span>
+                                @foreach ($data as $k => $val)
+                                    <span class="step"></span>
                                 @endforeach
                             </div>
                         </div>
                     </fieldset>
-                    <h3 style="pointer:none !important"> Subscription</h3>
-                    <fieldset>.
+                    <h3 style="pointer:none !important"> Medication Summary</h3>
+                    <fieldset>
                         <div class="fieldset-content">
+                            <div class="tab1">
+                                <h2>Which medication do you prefer?</h2>
+                                <p class="desc">Specific drugs with dosages.</p>
+                                @foreach ($all_medicine as $k => $medicine)
+                                    <div style="border: 1px solid; margin: 5px;">
+                                        <div class="form-check p-2" style="display:flex; ">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[dosespot_rxcui]" id=""
+                                                value="{{ $medicine->dosespot_rxcui }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[active]" id=""
+                                                value="{{ $medicine->active }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[ndc]" id=""
+                                                value="{{ $medicine->ndc }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[days_supply]" id=""
+                                                value="{{ $medicine->days_supply }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[refills]" id=""
+                                                value="{{ $medicine->refills }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[pharmacy_notes]" id=""
+                                                value="{{ $medicine->pharmacy_notes }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[directions]" id=""
+                                                value="{{ $medicine->directions }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[quantity]" id=""
+                                                value="{{ $medicine->quantity }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[dispense_unit]" id=""
+                                                value="{{ $medicine->dispense_unit }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[strength]" id=""
+                                                value="{{ $medicine->strength }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[dispense_unit_id]" id=""
+                                                value="{{ $medicine->dispense_unit_id }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[pharmacy_id]" id=""
+                                                value="{{ $medicine->pharmacy_id }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[pharmacy_name]" id=""
+                                                value="{{ $medicine->pharmacy_name }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[metadata]" id=""
+                                                value="{{ $medicine->metadata }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[thank_you_note]" id=""
+                                                value="{{ $medicine->thank_you_note }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[clinical_note]" id=""
+                                                value="{{ $medicine->clinical_note }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[allow_substitutions]" id=""
+                                                value="{{ $medicine->allow_substitutions }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[title]" id=""
+                                                value="{{ $medicine->title }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[partner_medication_id]" id=""
+                                                value="{{ $medicine->partner_medication_id }}">
+                                            <input class="form-check-input" type="hidden"
+                                                name="medication_data[effective_date]" id=""
+                                                value="{{ $medicine->effective_date }}">
+                                            <input class="form-check-input" type="radio"
+                                                name="medication_data[name]" id="exampleRadios1"
+                                                value="{{ $medicine->name }}" style="width:3% !important">
+                                            <label class="form-check-label" for="exampleRadios1"
+                                                style="padding: 18px">{{ $medicine->name }} |
+                                                {{ $medicine->strength }} </label>
 
-                            <div><b>How often do you want to your meds shipped?</b>
+                                            {{-- <div class="form-check p-2" style="display:flex;">
+                                            <input class="form-check-input" type="radio"
+                                                name="intake_data[{{ $k }}][answer]"
+                                                id="exampleRadios1" value="" style="width:3% !important">
+                                            <label class="form-check-label" for="exampleRadios1"
+                                                style="padding: 18px">
+                                                {{ $option->title }}
+                                            </label>
+                                        </div> --}}
+
+                                        </div>
+                                        <div style="margin-left: 58px;">
+                                            <p>Refills : {{ $medicine->refills }} & Days_supply :
+                                                {{ $medicine->days_supply }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <div class="tab1"><b>How often do you want to your meds shipped?</b>
                                 <p>Never be caught without'em.</p>
                                 <div class="form-check p-2" style="display:flex;">
                                     <input class="form-check-input" type="radio"
-                                        name="medication_data[shipped_time]" value="1"
+                                        name="medication_data[shipped_time]" id="exampleRadios1" value="1"
                                         style="width:3% !important">
                                     <label class="form-check-label" for="exampleRadios1" style="padding: 18px">
                                         Ship Every 1 Month
@@ -610,15 +592,21 @@
                                 </div>
                                 <div class="form-check p-2" style="display:flex;">
                                     <input class="form-check-input" type="radio"
-                                        name="medication_data[shipped_time]" style="width:3% !important"
-                                        value="3">
+                                        name="medication_data[shipped_time]" id="exampleRadios2"
+                                        style="width:3% !important" value="3">
                                     <label class="form-check-label" for="exampleRadios2" style="padding: 18px">
                                         Ship Every 3 Month
                                     </label>
                                 </div>
-                                @if ($errors->has('medication_data.shipped_time'))
-                                <span style="color:red;">{{ $errors->first('medication_data.shipped_time') }}</span>
-                            @endif
+                            </div>
+                            <div style="overflow:auto; padding:2px;" id="divBtn1">
+                                <button type="button" id="nextBtn" onclick="nextPrev1(1)"
+                                    style="width: 100%;">Continue</button>
+                            </div>
+                            <div style="text-align:center;margin-top:40px; display:none;">
+                                <span class="step1"></span>
+                                <span class="step1"></span>
+                                <button type="submit" value="submit" style="visibility: hidden;">Submit</button>
                             </div>
                         </div>
                     </fieldset>
@@ -630,19 +618,9 @@
                             <div class="form-row">
                                 <div class="form-flex">
                                     <div class="form-group">
-                                        <label for="phone" class="form-label">Government Issued ID</label>
-                                        <input type="file" name="file" class="form-select" id="fileselect"
-                                            style="padding:14px">
-                                            @if ($errors->has('file'))
-                                            <span style="color:red;">{{ $errors->first('file') }}</span>
-                                        @endif
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone" class="form-label">Government ID Name</label>
-                                        <input type="text" name="filename" class="form-select">
-                                        @if ($errors->has('filename'))
-                                        <span style="color:red;">{{ $errors->first('filename') }}</span>
-                                    @endif
+                                        <!-- <input type="file" name="file" id="file" style="padding:14px"/> -->
+                                        <input type="file" name="file" id="inputFile" class="form-control">
+                                        <span class="text-danger" id="file-input-error"></span>
                                     </div>
                                 </div>
                             </div>
@@ -664,16 +642,147 @@
             </form>
         </div>
     </div>
+    <script>
+        var currentTab = 0;
+        showTab(currentTab);
 
+        function showTab(n) {
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+
+            // if (n == 0) {
+            //     document.getElementById("prevBtn").style.display = "none";
+            // } else {
+            //     document.getElementById("prevBtn").style.display = "inline";
+            // }
+
+            if (n == (x.length - 1)) {
+                // document.getElementById("nextBtn").innerHTML = "Next";
+                $('#divBtn').css("display", "none");
+                $('.actions').show();
+
+            } else {
+                // document.getElementById("nextBtn").innerHTML = "Next";
+            }
+
+            fixStepIndicator(n)
+        }
+
+        function nextPrev(n) {
+            var x = document.getElementsByClassName("tab");
+            // if (n == 1 && !validateForm()) return false;
+            x[currentTab].style.display = "none";
+            currentTab = currentTab + n;
+            // alert(x.length);
+            if (currentTab >= x.length) {
+                document.getElementById("signup-form").submit();
+                return true;
+            }
+            showTab(currentTab);
+        }
+
+        function validateForm() {
+            var x, y, i, valid = true;
+            x = document.getElementsByClassName("tab");
+            y = x[currentTab].getElementsByTagName("input");
+            for (i = 0; i < y.length; i++) {
+                if (y[i].value == "") {
+                    y[i].className += " invalid";
+                    valid = false;
+                }
+            }
+            if (valid) {
+                document.getElementsByClassName("step")[currentTab].className += " finish";
+            }
+            return valid;
+        }
+
+        function fixStepIndicator(n) {
+            var i, x = document.getElementsByClassName("step");
+            for (i = 0; i < x.length; i++) {
+                x[i].className = x[i].className.replace(" active", "");
+            }
+            x[n].className += " active";
+        }
+
+        var currentTab1 = 0;
+        showTab1(currentTab1);
+
+        function showTab1(n) {
+            var x = document.getElementsByClassName("tab1");
+            x[n].style.display = "block";
+
+            // if (n == 0) {
+            //     document.getElementById("prevBtn").style.display = "none";
+            // } else {
+            //     document.getElementById("prevBtn").style.display = "inline";
+            // }
+
+            if (n == (x.length - 1)) {
+                // document.getElementById("nextBtn").innerHTML = "Next";
+                $('#divBtn1').css("display", "none");
+                $('.actions').show();
+
+            } else {
+                // document.getElementById("nextBtn").innerHTML = "Next";
+            }
+
+            fixStepIndicator1(n)
+        }
+
+        function nextPrev1(n) {
+            var x = document.getElementsByClassName("tab1");
+            // if (n == 1 && !validateForm1()) return false;
+            x[currentTab1].style.display = "none";
+            currentTab1 = currentTab1 + n;
+            // alert(x.length);
+            if (currentTab1 >= x.length) {
+                // alert(currentTab);
+
+                document.getElementById("signup-form").submit();
+                return true;
+            }
+            showTab1(currentTab1);
+        }
+
+        function validateForm1() {
+            var x, y, i, valid = true;
+            x = document.getElementsByClassName("tab1");
+            y = x[currentTab1].getElementsByTagName("input");
+            for (i = 0; i < y.length; i++) {
+                if (y[i].value == "") {
+                    y[i].className += " invalid";
+                    valid = false;
+                }
+            }
+            if (valid) {
+                document.getElementsByClassName("step1")[currentTab1].className += " finish";
+            }
+            return valid;
+        }
+
+        function fixStepIndicator1(n) {
+            var i, x = document.getElementsByClassName("step1");
+            for (i = 0; i < x.length; i++) {
+                x[i].className = x[i].className.replace(" active", "");
+            }
+            x[n].className += " active";
+        }
+    </script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-validation/dist/additional-methods.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-steps/jquery.steps.min.js') }}"></script>
+    <script src="{{ asset('vendor/minimalist-picker/dobpicker.js') }}"></script>
+    <script src="{{ asset('vendor/nouislider/nouislider.min.js') }}"></script>
+    <script src="{{ asset('vendor/wnumb/wNumb.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>
-<script src="{{ asset('vendor/jquery-validation/dist/additional-methods.min.js') }}"></script>
-<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('vendor/jquery-steps/jquery.steps.min.js') }}"></script>
-<script src="{{ asset('vendor/minimalist-picker/dobpicker.js') }}"></script>
-<script src="{{ asset('vendor/jquery-validation/dist/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('vendor/nouislider/nouislider.min.js') }}"></script>
-<script src="{{ asset('vendor/wnumb/wNumb.js') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script>
-
-
 </html>
+
+{{-- @push('scripts')
+
+{!! JsValidator::formRequest('App\Http\Requests\PatientDetailsRequest','#signup-form') !!}
+@endpush --}}

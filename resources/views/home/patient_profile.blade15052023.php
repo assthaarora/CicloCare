@@ -99,7 +99,7 @@
 
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
-                </li>
+                </li> 
 
               </ul>
               <div class="tab-content pt-2">
@@ -163,7 +163,7 @@
                         </div>
                       </div>
                     </div>
-
+ 
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
                       <div class="col-md-8 col-lg-9">
@@ -192,10 +192,10 @@
                         <option value="2">Female</option>
                         <option value="9">Not Applicable</option>
                     </select>
-
+                      
                       </div>
                     </div>
-
+                    
                     <div class="row mb-3">
                       <label for="Job" class="col-md-4 col-lg-3 col-form-label">Birth Date</label>
                       <div class="col-md-8 col-lg-9">
@@ -205,7 +205,7 @@
                     <!-- <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Metadata</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="" type="text" class="form-control" id="" value="{{--$patient_data->metadata--}}">
+                        <input name="" type="text" class="form-control" id="" value="{{$patient_data->metadata}}">
                       </div>
                     </div> -->
                     <div class="row mb-3">
@@ -217,7 +217,7 @@
                     <!-- <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Phone Type</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="" type="number" class="form-control" id="" value="{{--$patient_data->phone_type--}}">
+                        <input name="" type="number" class="form-control" id="" value="{{$patient_data->phone_type}}">
                       </div>
                     </div> -->
                     <div class="row mb-3">
@@ -233,7 +233,7 @@
                       </div>
                     </div>
 
-
+                    
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Address 1</label>
                       <div class="col-md-8 col-lg-9">
@@ -249,19 +249,19 @@
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Zip Code</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="zip" type="text" class="form-control" id="zip" value="{{$patient_data->zip_code}}">
+                        <input name="zip" type="text" class="form-control" id="" value="{{$patient_data->zip_code}}">
                       </div>
                     </div>
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">City Name</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="city" type="text" class="form-control" id="city" value="{{$patient_data->city_name}}">
+                        <input name="city" type="text" class="form-control" id="" value="{{$patient_data->city_name}}">
                       </div>
                     </div>
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">State Name</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="state" type="text" class="form-control" id="state" value="{{$patient_data->state_name}}">
+                        <input name="state" type="text" class="form-control" id="" value="{{$patient_data->state_name}}">
                       </div>
                     </div>
                     <!-- <div class="row mb-3">
@@ -285,7 +285,7 @@
                       </div>
                     </div> -->
 
-
+                  
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Save Changes</button>
                     </div>
@@ -405,33 +405,9 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
-  <script>
-    $(document).ready(function() {
-        $(document).on("keyup", "#zip", function() {
-            var pincode = $(this).val();
-
-            if (pincode.length < 5 || pincode.length > 5) {
-
-            }else if (pincode.length == 5 && $.isNumeric(pincode)) {
-            console.log(pincode);
-                $.ajax({
-                    url: '/pincode/' + pincode,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        $('#city').val(data['city']);
-                        $('#state').val(data['state']);
-                    }
-                });
-            }
-        });
-    });
-  </script>
 
 </body>
 
