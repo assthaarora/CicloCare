@@ -15,7 +15,7 @@ class PatientProfileController extends Controller
 
     public function index()
     {
-        $patient_data=DB::table('users')->join('usersdetails', 'users.id', '=','usersdetails.refrence_id')
+        $patient_data=DB::table('users')->join('usersdetails', 'users.id', '=','usersdetails.userId')
         ->where('users.id',Auth::user()->id)
         ->select('users.*', 'usersdetails.address1',
         'usersdetails.address2',
@@ -28,7 +28,7 @@ class PatientProfileController extends Controller
         'usersdetails.pregnancy',
         'usersdetails.current_medications',
         'usersdetails.driver_license_id',
-        'usersdetails.refrence_id','usersdetails.metadata')->first();
+        'usersdetails.userId','usersdetails.metadata')->first();
 
         return view('home.patient_profile',compact('patient_data'));
     }
@@ -71,7 +71,7 @@ class PatientProfileController extends Controller
             $user->phone_number=$request->phonenumber;
             $user->save();
 
-            $userDetails = UserDetails::where('refrence_id', $id)->first();
+            $userDetails = UserDetails::where('userId', $id)->first();
             if ($userDetails) {
                 $userDetails->address1=$request->address1;
                 $userDetails->address2=$request->address2;
