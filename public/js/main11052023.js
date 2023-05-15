@@ -1,18 +1,4 @@
-
-$( document ).ready(function() {
-    var data =$('.steps ul').find('li');
-    $(this).remove('.step-number');
-    
-     for(var i=0; i<data.length; i++) {
-         if(i >=3 && i < data.length -4){
-            $(this).find('#steps-uid-0-t-'+i).css({"display":"none"});
-         }
-     }
-       
-});
-
 (function($) {
-    
     var form = $("#signup-form");
     form.validate({
         errorPlacement: function errorPlacement(error, element) {
@@ -32,7 +18,7 @@ $( document ).ready(function() {
         bodyTag: "fieldset",
         transitionEffect: "fade",
         stepsOrientation: "vertical",
-        titleTemplate: '<div class="title"><span class="step-number"></span><span class="step-text">#title#</span></div>',
+        titleTemplate: '<div class="title"><span class="step-number">#index#</span><span class="step-text">#title#</span></div>',
         labels: {
             previous: 'Previous',
             next: 'Next',
@@ -40,27 +26,36 @@ $( document ).ready(function() {
             current: ''
         },
         onStepChanging: function(event, currentIndex, newIndex) {
-           
             if (currentIndex === 0) {
                 form.parent().parent().parent().append('<div class="footer footer-' + currentIndex + '"></div>');
-              
-            }
-            if (currentIndex === 1) {
-        
-
-                form.parent().parent().parent().find('.footer').removeClass('footer-0').addClass('footer-' + currentIndex + '');
+                $('.actions').hide();
+            }else{
                 
+                $('.actions').show();
             }
+
+            if (currentIndex === 1) {
+                $('.actions').hide();
+                form.parent().parent().parent().find('.footer').removeClass('footer-0').addClass('footer-' + currentIndex + '');
+            }
+
+            if (currentIndex === 2) {
+                form.parent().parent().parent().find('.footer').removeClass('footer-1').addClass('footer-' + currentIndex + '');
+            }
+            if (currentIndex === 3) {
+                form.parent().parent().parent().find('.footer').removeClass('footer-2').addClass('footer-' + currentIndex + '');
+            }
+            // if(currentIndex === 4) {
+            //     form.parent().parent().parent().append('<div class="footer" style="height:752px;"></div>');
+            // }
             form.validate().settings.ignore = ":disabled,:hidden";
             return form.valid();
         },
         onFinishing: function(event, currentIndex) {
-           
             form.validate().settings.ignore = ":disabled";
             return form.valid();
         },
         onFinished: function(event, currentIndex) {
-          
             form.submit();
         },
         onStepChanged: function(event, currentIndex, priorIndex) {
@@ -111,13 +106,14 @@ $( document ).ready(function() {
                 format: wNumb({
                     decimals: 0,
                     thousand: '',
-                    prefix: '$ ',
+                    prefix: ' ',
                 })
         });
         var marginMin = document.getElementById('value-lower'),
 	    marginMax = document.getElementById('value-upper');
-
-        marginSlider.noUiSlider.on('update', function ( values, handle ) {
+        
+        marginSlider.noUiSlider.on('update', function (values, handle ) {
+            $('#myrange').val(values);
             if ( handle ) {
                 marginMax.innerHTML = values[handle];
             } else {
