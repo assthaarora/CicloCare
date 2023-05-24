@@ -1,4 +1,6 @@
 @extends('layouts.patientheader')
+
+
 <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
     <div class="container">
         <div class="row justify-content-center">
@@ -24,28 +26,20 @@
                             </p>
                         </div>
 
-                        <form class="row g-3 needs-validation" id="contactform" novalidate="" method="POST" action="{{ route('intake.store') }}">
+                        <form class="row g-3 needs-validation" novalidate="" method="POST" action="{{ route('intake.store') }}">
                         @csrf
-                        <div class="col-12">
-                            <label for="yourUsername" class="form-label">{{ __('Email Address') }}</label>
-                            <div class="input-group has-validation">
-                              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-            
-                              @error('email')
-                                  <span class="invalid-feedback" role="alert">
-                                    
-                                      <strong>{{ $errors->first('email') }}</strong>
-                                  </span>
-                              @enderror
+                            <div class="col-12">
+                                <label for="yourEmail" class="form-label">Your Email</label>
+                                <input type="email" name="email" class="form-control" id="yourEmail" required="">
+                                <div class="invalid-feedback">Please enter a valid Email adddress!</div>
                             </div>
-                          </div>
-                            {{-- <div class="col-12">
+                            <div class="col-12">
                                 <div class="form-check">
-                                <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                                <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required="">
                                 <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
                                 <div class="invalid-feedback">You must agree before submitting.</div>
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="col-12">
                                 <button class="btn btn-primary w-100" type="submit">Next</button>
                             </div>
@@ -59,18 +53,4 @@
         </div>
     </div>
 </section>
-
-<script>
-   $(document).ready(function() {
-    $("form").validate({
-        rules: {
-            name: "required",
-            first_name: "required",
-            last_name: "required",
-            email: "required",
-            mobile: "required",
-            ...
-        }
-    });
-});
-</script>
+    

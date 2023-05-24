@@ -21,13 +21,6 @@ class IntakePageController extends Controller
 
     public function index($email)
     {
-        $email=decrypt($email);
-        $userexist=DB::table('users')->where('email',$email)->first();
-        if($userexist){
-            return redirect('/login');
-
-        }
-
         // $disease_name="";
         // $data=[];
         // $all_medicine=[];
@@ -173,7 +166,6 @@ class IntakePageController extends Controller
             'file' => 'required',
             'filename' => 'required',
             'intake_data.*.answer' => 'required',
-            // 'multiple_option.*' => 'required',
             
         ],
          [
@@ -202,6 +194,7 @@ class IntakePageController extends Controller
         ]
     );
 
+       
         $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5OGVkOTY3NC0wNzI3LTQwZTAtYWJlZS00NmI3MjcxYzg0MjQiLCJqdGkiOiI1NTQ0OTY4YmYwYmQwODZhY2FmOTQzODYyODdhZDExZGJlMDhmZDc4NWM4ZWMxZTMwNjk0YzdlZGI0MTA4OTc1MjUzNzRhNjY5YzY2ZDA0ZiIsImlhdCI6MTY4MzcwNzU0OC42NjAyODcsIm5iZiI6MTY4MzcwNzU0OC42NjAyOTIsImV4cCI6MTY4Mzc5Mzk0OC42NTU1MDMsInN1YiI6IiIsInNjb3BlcyI6WyIqIl19.TpIxq4bIgEmEYAQGLBWupB1mN4CdzwabqsIYM-QD_puiwOdoeZCWEERVMABPtZUL3mCXhUYoTB8Ngvlt45l2Zt3197W-yd88byI5eDNfhxAPtweCrHDzmKIR3yBUd-Qgv-AHfQb6FkC_yzOn7wTSOzMYm1YtpYcVIEAwX8ck-lKumCTQE1lPw7q9SMDYbZzR1U3IiS-7QgSi9uW5OEFYlvyfHQkfG28xNnPgw5lvmBWjIrnLAU2jdbHpPLShecvECqAWIQ_RThkdAhZo58QSkOo4pZ2LzlzqQ9juZBMDm9034mgQ-3TPJDAWSRILu2algHXBH_FOIN1zFXxK1DYaPZ3yjRG9wnTtAuYzuTCop82MjcF_1WPX6valGq8O0nPvv7sCKes16EWwtO65Cg4C8Y2tMGgOE7WpILANTuaFWfvx6Kr1V2Y__N-2zBPxHVxqCH5FPAwDDgRESDABVY8iMVwlIqVZkqEtxa3x9dhLZAPSCQtqzmVK9BDb0kgmGXpYNPReIbSluZ2yfv6MKXswwiOlgspQdOQZAg5kldOEfZNA565xGTGZgUI5c_7cZqG_o_icd5gnOun0hxYEMoAFY3F-tONmg0hj3imAkQXoSN_syGcF8dp3pmtPub1sYI_ikVSxzPVRIHWkj8PLQ8FkMT5m727vFHKVdoyhfyLaalM';
         ################################################Patient Creation#####################################################################
         $gender = "";

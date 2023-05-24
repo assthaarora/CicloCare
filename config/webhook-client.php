@@ -22,7 +22,7 @@ return [
             ],
 
             'process_webhook_job' => App\Handler\WebhookHandler::class,
-        ]
+        ],[]
     ],
 
     /*
