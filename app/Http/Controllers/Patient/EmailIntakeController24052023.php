@@ -35,10 +35,6 @@ class EmailIntakeController extends Controller
      */
     public function store(Request $request)
     {
-
-        $validatedData = $request->validate([
-            'email'=>'required|email'
-        ]);
        $email=$request->email;
         return redirect()->route('form',['email' =>encrypt($email)]);
     }

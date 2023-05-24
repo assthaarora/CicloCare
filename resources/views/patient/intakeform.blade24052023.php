@@ -12,27 +12,13 @@
     
     <link rel="stylesheet" href="{{ asset('fonts/material-icon/css/material-design-iconic-font.min.css')}}">
     <link rel="stylesheet" href="{{ asset('vendor/nouislider/nouislider.min.css')}}">
+
     <!-- Main css -->
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 </head>
 
 <body>
-    {{-- @if (count($errors) > 0)
 
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-     </ul>
-    </div>
-     @endif
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success alert-block">
-     <button type="button" class="close" data-dismiss="alert">×</button>
-     <strong>{{ $message }}</strong>
-     </div>
-     @endif --}}
     <div class="main">
 
         <div class="container">
@@ -276,13 +262,9 @@
 
                                         <div class="form-check p-2" style="display:flex;padding:1px;">
                                             <input class="form-check-input" type="text"
-                                                name="intake_data[{{ $k }}][answer]" value="{{ old("intake_data.$k.answer") }}"
+                                                name="intake_data[{{ $k }}][answer]" value=""
                                                 style="margin-top: 5px; margin-bottom: 5px;">
                                         </div>
-
-                                        @if ($errors->has("intake_data.$k.answer"))
-                                        <span style="color:red;">{{ $errors->first("intake_data.$k.answer") }}</span>
-                                    @endif
                                     @elseif($val->type == 'boolean')
                                         <input type="hidden"
                                             name="intake_data[{{ $k }}][partner_questionnaire_question_id]"
@@ -312,7 +294,7 @@
                                         <div class="form-check p-2" style="display:flex;">
                                             <input class="form-check-input" type="radio"
                                                 name="intake_data[{{ $k }}][answer]"
-                                                value="Y" style="width:3% !important" {{ old("intake_data.$k.answer") == 'Y' ? 'checked' : '' }}>
+                                                id="{{ $val->title }}" value="Y" style="width:3% !important">
                                             <label class="form-check-label" for="" style="padding: 18px">
                                                 Yes
                                             </label>
@@ -320,16 +302,12 @@
                                         <div class="form-check p-2" style="display:flex;">
                                             <input class="form-check-input" type="radio"
                                                 name="intake_data[{{ $k }}][answer]"
-                                                style="width:3% !important" value="N" {{ old("intake_data.$k.answer") == 'N' ? 'checked' : '' }}>
+                                                style="width:3% !important" value="N">
                                             <label class="form-check-label" for="exampleRadios2"
                                                 style="padding: 18px">
                                                 No
                                             </label>
-                                           
                                         </div>
-                                        @if ($errors->has("intake_data.$k.answer"))
-                                        <span style="color:red;">{{ $errors->first("intake_data.$k.answer") }}</span>
-                                    @endif
                                     @elseif($val->type == 'multiple_option')
                                         <input type="hidden"
                                             name="multiple_option[partner_questionnaire_question_id]"
@@ -340,13 +318,12 @@
                                             <div class="form-check p-2" style="display:flex;">
                                                 <input class="form-check-input" type="checkbox"
                                                     name="multiple_option[{{ $k }}]"
-                                                    value=" {{ $option->title }}" style="width:3% !important"  {{ in_array($option->title, old('multiple_option', [])) ? 'checked' : '' }}>
+                                                    value=" {{ $option->title }}" style="width:3% !important">
                                                 <label class="form-check-label" for="" style="padding: 18px">
                                                     {{ $option->title }}
                                                 </label>
                                             </div>
                                         @endforeach
-                                     
                                     @elseif($val->type == 'text')
                                         <input type="hidden"
                                             name="intake_data[{{ $k }}][partner_questionnaire_question_id]"
@@ -375,12 +352,9 @@
                                             value="{{ $val->default_value }}">
                                         <div class="form-check p-2" style="display:flex;padding:1px;">
                                             <input class="form-check-input" type="text"
-                                                name="intake_data[{{ $k }}][answer]"  value="{{ old("intake_data.$k.answer") }}"
+                                                name="intake_data[{{ $k }}][answer]" value=""
                                                 style="margin-top: 5px; margin-bottom: 5px;">
                                         </div>
-                                        @if ($errors->has("intake_data.$k.answer"))
-                                        <span style="color:red;">{{ $errors->first("intake_data.$k.answer") }}</span>
-                                    @endif
                                     @elseif($val->type == 'single_option')
                                         <input type="hidden"
                                             name="intake_data[{{ $k }}][partner_questionnaire_question_id]"
@@ -418,9 +392,6 @@
                                                 </label>
                                             </div>
                                         @endforeach
-                                        @if ($errors->has("intake_data.$k.answer"))
-                                        <span style="color:red;">{{ $errors->first("intake_data.$k.answer") }}</span>
-                                    @endif
                                     @elseif($val->type == 'integer')
                                         <input type="hidden"
                                             name="intake_data[{{ $k }}][partner_questionnaire_question_id]"
@@ -449,12 +420,9 @@
                                             value="{{ $val->default_value }}">
                                         <div class="form-check p-2" style="display:flex;">
                                             <input class="form-check-input" type="number"
-                                                name="intake_data[{{ $k }}][answer]" value="{{ old("intake_data.$k.answer") }}"
+                                                name="intake_data[{{ $k }}][answer]" value=""
                                                 style="margin-top: 5px; margin-bottom: 5px;" />
                                         </div>
-                                        @if ($errors->has("intake_data.$k.answer"))
-                                        <span style="color:red;">{{ $errors->first("intake_data.$k.answer") }}</span>
-                                    @endif
                                     @elseif($val->type == 'date')
                                         <input type="hidden"
                                             name="intake_data[{{ $k }}][partner_questionnaire_question_id]"
@@ -483,12 +451,9 @@
                                             value="{{ $val->default_value }}">
                                         <div class="form-check p-2" style="display:flex;">
                                             <input class="form-check-input" type="date"
-                                                name="intake_data[{{ $k }}][answer]" value="{{ old("intake_data.$k.answer") }}"
+                                                name="intake_data[{{ $k }}][answer]" value=""
                                                 style="margin-top: 5px; margin-bottom: 5px;" />
                                         </div>
-                                        @if ($errors->has("intake_data.$k.answer"))
-                                        <span style="color:red;">{{ $errors->first("intake_data.$k.answer") }}</span>
-                                    @endif
                                     @elseif($val->type == 'ordering')
                                         <div class="form-check p-2" style="display:flex;">
                                             <input class="form-check-input" type="radio" name=""
@@ -506,9 +471,6 @@
                                                 No
                                             </label>
                                         </div>
-                                        @if ($errors->has("intake_data.$k.answer"))
-                                        <span style="color:red;">{{ $errors->first("intake_data.$k.answer") }}</span>
-                                    @endif
                                     @elseif($val->type == 'range')
                                         <input type="hidden"
                                             name="intake_data[{{ $k }}][partner_questionnaire_question_id]"
@@ -535,7 +497,9 @@
                                             value="{{ $val->order }}">
                                         <input type="hidden" name="intake_data[{{ $k }}][default_value]"
                                             value="{{ $val->default_value }}">
-                                    
+                                        <!-- <div class="form-check p-2" style="display:flex;">
+                                                <input type="range" id="{{ $val->title }}" name="intake_data[{{ $k }}]['type_range']" min="0" class="" max="11" style="margin: 0.4rem; !important">
+                                            </div> -->
                                         <div class="donate-us">
                                             <div class="price_slider ui-slider ui-slider-horizontal">
                                                 <div id="slider-margin"></div>
@@ -549,7 +513,6 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        
                                     @endif
                                 </div>
                             </div>
@@ -639,8 +602,8 @@
                                 <p>Never be caught without'em.</p>
                                 <div class="form-check p-2" style="display:flex;">
                                     <input class="form-check-input" type="radio"
-                                        name="medication_data[shipped_time]" value="1"  
-                                        style="width:3% !important" {{ old('medication_data.shipped_time') == 1 ? 'checked' : '' }}>
+                                        name="medication_data[shipped_time]" value="1"
+                                        style="width:3% !important">
                                     <label class="form-check-label" for="exampleRadios1" style="padding: 18px">
                                         Ship Every 1 Month
                                     </label>
@@ -648,7 +611,7 @@
                                 <div class="form-check p-2" style="display:flex;">
                                     <input class="form-check-input" type="radio"
                                         name="medication_data[shipped_time]" style="width:3% !important"
-                                        value="3" {{ old('medication_data.shipped_time') == 3 ? 'checked' : '' }}>
+                                        value="3">
                                     <label class="form-check-label" for="exampleRadios2" style="padding: 18px">
                                         Ship Every 3 Month
                                     </label>
